@@ -3,7 +3,7 @@ import pdb
 import random
 
 class Card:
-
+# card class
     def __init__(self, rank, suit):
         self.suit = suit
         self.rank = rank
