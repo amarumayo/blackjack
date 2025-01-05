@@ -3,12 +3,12 @@ import pdb
 import random
 
 class Card:
-
+# card class
     def __init__(self, rank, suit):
         self.suit = suit
         self.rank = rank
     def __repr__(self):
-        rep = "".join((str(self.rank), self.suit))
+        rep = "_".join((str(self.rank), self.suit))
         return(rep)
        
 
