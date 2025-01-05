@@ -8,7 +8,7 @@ class Card:
         self.suit = suit
         self.rank = rank
     def __repr__(self):
-        rep = "".join((str(self.rank), self.suit))
+        rep = "_".join((str(self.rank), self.suit))
         return(rep)
        
 
