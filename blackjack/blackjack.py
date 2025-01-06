@@ -44,6 +44,14 @@ class Hand:
     def clear_hand(self):
         self.cards = []
 
+    def has_blackjack(self):
+        blackjack = False
+        if len(self.cards) == 2 and self.value == 21:
+            blackjack = True
+        return(blackjack)
+
+
+
     @property
     def value(self):
         '''Calculate the value of the cards in a hand instance'''
@@ -72,11 +80,35 @@ deck.fill_deck()
 deck.shuffle()
 deck.cards[1]
 
+
+
+# test Hand.has_blackjack method
+# test that a black jack is detected
 player = Hand(is_dealer = False)    
+player.cards = [Card("A", "Spades"), Card("10", "Clubs")]
+player.value
+player.has_blackjack()
+
+# test that a black jack is not detected with 3 cards that equal 21
+player = Hand(is_dealer = False)    
+player.cards = [Card("A", "Spades"), Card("8", "Clubs"), Card("2", "clubs")]
+player.value
+player.has_blackjack()
+
+# test that a black jack is not detected with 2 cards that do not equal 21
+player = Hand(is_dealer = False)    
+player.cards = [Card("A", "Spades"), Card("8", "Clubs")]
+player.value
+player.has_blackjack()
+
+
 dealer = Hand(is_dealer = True)
+
+
 
 player.add_card(deck.deal())
 dealer.add_card(deck.deal())
+
 player.cards 
 dealer.cards
 player.value
