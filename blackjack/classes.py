@@ -49,7 +49,11 @@ class Hand:
             blackjack = True
         return(blackjack)
 
-
+    def is_bust(self):
+        bust = False
+        if self.value > 21:
+            bust = True
+        return(bust)
 
     @property
     def value(self):
