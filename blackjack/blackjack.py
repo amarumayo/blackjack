@@ -1,41 +1,37 @@
 
-import pdb
-import random
-
-
-card = Card("5", "C")
-deck = Deck()
-deck.fill_deck()
-deck.shuffle()
-deck.cards[1]
-
-
-
-
-
-dealer = Hand(is_dealer = True)
-
-
-
-player.add_card(deck.deal())
-dealer.add_card(deck.deal())
-
-player.cards 
-dealer.cards
-player.value
-
-class Game:
-    deck = Deck()
-    deck.fill_deck()
-    deck.shuffle()
-    deck.clear_deck()
-    x = deck.deal()
-    print("hi")
-
+from classes import Card, Hand, Deck, Game
 
 game = Game()
+game.play()
 
-deck = Deck()
-deck.fill_deck()
-deck.shuffle()
-len(deck.cards)
+
+
+# game = Game()
+# game.deck = Deck()
+# game.deck.fill_deck()
+# game.deck.shuffle()
+# player = Hand(is_dealer = False)
+# dealer = Hand(is_dealer = True)     
+
+# dealer.cards
+# dealer.is_dealer   
+# game.hands = [player, dealer]
+
+# for i in range(2):
+#     for p in game.hands:
+#         # p = player
+#         p.add_card(game.deck.deal())
+
+# dealer_hide = False       
+
+# if (dealer.is_dealer and dealer_hide):
+#     print('[XX] ' + str(dealer.cards[1:]))
+# else:
+#     print(str(dealer.cards))
+
+
+    
+
+# game.hands[1].cards
+# deck.fill_deck()
+# deck.shuffle()

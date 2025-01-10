@@ -7,7 +7,7 @@ class Card:
         self.suit = suit
         self.rank = rank
     def __repr__(self):
-        rep = "_".join((str(self.rank), self.suit))
+        rep = "".join((str(self.rank), self.suit))
         return(rep)
        
 
@@ -29,6 +29,10 @@ class Deck():
 
     def deal(self):
         return(self.cards.pop())
+
+    def __repr__(self):
+        rep = f"{str(len(self.cards))} cards remaining in the deck"
+        return(rep)
 
 
 class Hand:
@@ -74,3 +78,42 @@ class Hand:
             num_aces -= 1
 
         return val
+
+    def show_hand(self, dealer_hide = False):
+        
+        if (self.is_dealer and dealer_hide):
+            dealer_display = self.cards[:] 
+            dealer_display[0] = Card('X', 'X')
+            print(str(dealer_display))
+        else:
+            print(str(self.cards))
+
+class Game:
+    
+    def __init__(self):
+        self.hands = []
+        self.deck = []
+        self.player_turn = True
+
+
+    def play(self):
+        # self = Game()
+
+        self.deck = Deck()
+        self.deck.fill_deck()
+        self.deck.shuffle()
+
+        player = Hand(is_dealer = False)
+        dealer = Hand(is_dealer = True)
+        self.hands = [player, dealer]
+
+        # deal 2 cards to each player
+        for i in range(2):
+            for p in self.hands:
+                # p = player
+                p.add_card(self.deck.deal())
+
+        print("here")
+        # deck = Deck()
+        # deck.fill_deck()
+        # deck.shuffle()
