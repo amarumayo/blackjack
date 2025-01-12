@@ -5,8 +5,20 @@ import sys
 class Card:
     # card class
     def __init__(self, rank, suit):
+
+        if rank not in [
+            '1', '2', '3', '4', '5', '6',
+            '7', '8', '9', '10', 'A', 'J', 'Q', 'K']:
+                raise ValueError("Invalid rank")
+
+        valid_suits = ['D', 'S', 'C', 'H']
+        if suit not in valid_suits:
+            raise ValueError(f"Invalid suit. Valid suits are {valid_suits}")
+
         self.suit = suit
         self.rank = rank
+
+
 
     suit_lu = {
         "C": "\u2663",
