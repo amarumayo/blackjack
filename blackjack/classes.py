@@ -7,12 +7,18 @@ class Card:
     def __init__(self, rank, suit):
         self.suit = suit
         self.rank = rank
+
+    suit_lu = {
+        "C": "\u2663",
+        "H": "\u2665",
+        "D": "\u2666",
+        "S": "\u2660"
+    }    
+    
     def __repr__(self):
-        rep = "".join((str(self.rank), self.suit))
+        rep = "".join((str(self.rank), self.suit_lu[self.suit]))
         return(rep)
        
-
-
 class Deck():
     def __init__(self):
         self.cards = []
