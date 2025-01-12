@@ -134,6 +134,9 @@ class Game:
                 # p = player
                 p.add_card(self.deck.deal())
 
+        dealer.show_hand()
+        player.show_hand()
+
         # check for any blackjacks
         if dealer.has_blackjack:
             dealer.message_hand_win()
