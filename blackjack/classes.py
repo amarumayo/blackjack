@@ -1,5 +1,6 @@
 
 import random
+import sys
 
 class Card:
     # card class
@@ -47,12 +48,14 @@ class Hand:
     def clear_hand(self):
         self.cards = []
 
+    @property
     def has_blackjack(self):
         blackjack = False
         if len(self.cards) == 2 and self.value == 21:
             blackjack = True
         return(blackjack)
 
+    @property
     def is_bust(self):
         bust = False
         if self.value > 21:
@@ -88,6 +91,13 @@ class Hand:
         else:
             print(str(self.cards))
 
+    def message_hand_win(self):
+        if self.is_dealer:
+            print("dealer wins!")
+        elif not self.is_dealer:
+            print("player wins")
+
+
 class Game:
     
     def __init__(self):
@@ -95,10 +105,21 @@ class Game:
         self.deck = []
         self.player_turn = True
 
+    def check_winner(self):
+        #list(map())
+        # print("here")
+
+        # for i in self.hands:
+        #     print(i.value)
+        pass
+
+    def end(self):
+        print("goodbye")
+        sys.exit()
+
 
     def play(self):
         # self = Game()
-
         self.deck = Deck()
         self.deck.fill_deck()
         self.deck.shuffle()
@@ -113,7 +134,17 @@ class Game:
                 # p = player
                 p.add_card(self.deck.deal())
 
-        print("here")
+        # check for any blackjacks
+        if dealer.has_blackjack:
+            dealer.message_hand_win()
+            self.end()
+ 
+        if player.has_blackjack and not dealer.has_blackjack:
+            player.message_hand_win()
+            self.end()
+
+
+
         # deck = Deck()
         # deck.fill_deck()
         # deck.shuffle()
