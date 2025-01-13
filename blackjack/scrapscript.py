@@ -3,7 +3,7 @@ import random
 from classes import Card, Hand, Deck, Game
 
 # create a card
-test_card = Card('A', 'D')
+test_card = Card('A', 'L')
 
 # create a test dealer and player hand
 deck = Deck()

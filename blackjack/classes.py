@@ -18,8 +18,7 @@ class Card:
         self.suit = suit
         self.rank = rank
 
-
-
+    # unicode value to print suit symbols
     suit_lu = {
         "C": "\u2663",
         "H": "\u2665",
@@ -105,15 +104,17 @@ class Hand:
         if (self.is_dealer and dealer_hide):
             dealer_display = self.cards[:] 
             dealer_display[0] = Card('X', 'X')
-            print(str(dealer_display))
-        else:
-            print(str(self.cards))
+            print(f"Dealer: {str(dealer_display)}")
+        elif (self.is_dealer and not dealer_hide):
+            print(f"Dealer: {str(self.cards)}")
+        elif(not self.is_dealer):
+            print(f"Player: {str(self.cards)}")
 
     def message_hand_win(self):
         if self.is_dealer:
-            print("dealer wins!")
+            print("Dealer wins!")
         elif not self.is_dealer:
-            print("player wins")
+            print("Player wins!")
 
 
 class Game:
@@ -132,7 +133,7 @@ class Game:
         pass
 
     def end(self):
-        print("goodbye")
+        print("Goodbye")
         sys.exit()
 
 
@@ -157,10 +158,12 @@ class Game:
 
         # check for any blackjacks
         if dealer.has_blackjack:
+            print('Blackjack!')
             dealer.message_hand_win()
             self.end()
  
         if player.has_blackjack and not dealer.has_blackjack:
+            print('Blackjack!')
             player.message_hand_win()
             self.end()
 
