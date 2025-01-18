@@ -58,7 +58,7 @@ class Deck():
         return(self.cards.pop(0))
 
     def __repr__(self):
-        rep = "Hand({})".format(self.cards)
+        rep = "Deck({})".format(self.cards)
         return(rep)
 
     def __str__(self):
@@ -66,7 +66,6 @@ class Deck():
         first_card = f"next card is {str(self.cards[0])}"
 
         return(info + '\n' + first_card)
-
 
 
 class Hand:
@@ -145,12 +144,18 @@ class Hand:
                 print(f"Player stands with hand of {str(self.value)}\n")
                 self.is_active = False
     
+    def __str__(self):
+        n_cards = f"number of cards: {len(self.cards)}"
+        hand_value = f"hand value: {str(self.value)}"
+        is_dealer = f"is dealer: {str(self.is_dealer)}"
+        is_active = f"is active: {str(self.is_active)}"
+
+        return(n_cards + '\n' + hand_value + '\n' + is_dealer + '\n' + is_active)
+
     def __repr__(self):
-        pass
+        rep = "Hand({}, {}, {})".format(self.cards, self.is_dealer, self.is_active)
+        return(rep)
 
-        
-
-    
 
 class Game:
     

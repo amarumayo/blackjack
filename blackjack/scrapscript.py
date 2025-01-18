@@ -19,6 +19,8 @@ print(test_deck)
 
 player = Hand(is_dealer = False)
 player.cards.append(Card("A", "D"))
+print(player)
+
 player.cards.append(Card("5", "D"))
 dealer = Hand(is_dealer = True)
 dealer.cards.append(Card("10", "D"))
