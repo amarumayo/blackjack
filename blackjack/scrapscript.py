@@ -1,30 +1,17 @@
 
+
 import random
 from classes import Card, Hand, Deck, Game
 
 # create a card
-test_card = Card('A', 'D')
-print(test_card)
-repr(test_card)
-str(test_card)
+test_card = Card('A', 'L')
 
 # create a test dealer and player hand
-test_deck = Deck()
-print(test_deck)
-print(test_deck.deal())
-
-test_deck.fill_deck()
-test_deck.shuffle()
-print(test_deck)
-
-
-
+deck = Deck()
+deck.fill_deck()
+deck.shuffle()
 player = Hand(is_dealer = False)
 player.cards.append(Card("A", "D"))
-print(player)
-print(player.cards)
-
-print(player.cards[0])
 player.cards.append(Card("5", "D"))
 dealer = Hand(is_dealer = True)
 dealer.cards.append(Card("10", "D"))
