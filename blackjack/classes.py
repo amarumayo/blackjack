@@ -1,7 +1,6 @@
 
 import random
 import sys
-import time
 
 class Card:
     # card class
@@ -70,10 +69,9 @@ class Deck():
 
 class Hand:
 
-    def __init__(self, is_dealer, is_active = False):
+    def __init__(self, is_dealer):
         self.cards = []
         self.is_dealer = is_dealer
-        self.is_active = is_active
 
     def add_card(self, card):
         self.cards.append(card)
@@ -132,30 +130,6 @@ class Hand:
         elif not self.is_dealer:
             print("Player wins!")
 
-    def player_choice(self, deck):
-        '''Prompt player to hit or stand with a hand instance'''
-
-        answer = ''
-        while answer not in ['h', 's']:
-            answer = input("Hit or Stand? H/S: ")
-            if answer.lower() == "h":
-                self.add_card(deck.deal())
-            if answer.lower() == "s":
-                print(f"Player stands with hand of {str(self.value)}\n")
-                self.is_active = False
-    
-    def __str__(self):
-        n_cards = f"number of cards: {len(self.cards)}"
-        hand_value = f"hand value: {str(self.value)}"
-        is_dealer = f"is dealer: {str(self.is_dealer)}"
-        is_active = f"is active: {str(self.is_active)}"
-
-        return(n_cards + '\n' + hand_value + '\n' + is_dealer + '\n' + is_active)
-
-    def __repr__(self):
-        rep = "Hand({}, {}, {})".format(self.cards, self.is_dealer, self.is_active)
-        return(rep)
-
 
 class Game:
     
@@ -170,14 +144,15 @@ class Game:
     def end(self):
         print("Goodbye")
         sys.exit()
-    
+
+
     def play(self):
         # self = Game()
         self.deck = Deck()
         self.deck.fill_deck()
         self.deck.shuffle()
 
-        player = Hand(is_dealer = False, is_active = True)
+        player = Hand(is_dealer = False)
         dealer = Hand(is_dealer = True)
         self.hands = [player, dealer]
 
@@ -187,57 +162,20 @@ class Game:
                 # p = player
                 p.add_card(self.deck.deal())
 
+        dealer.show_hand()
+        player.show_hand()
 
         # check for any blackjacks
         if dealer.has_blackjack:
-            player.show_hand()
-            dealer.show_hand()
             print('Blackjack!')
             dealer.message_hand_win()
             self.end()
  
         if player.has_blackjack and not dealer.has_blackjack:
-            player.show_hand()
-            dealer.show_hand()
             print('Blackjack!')
             player.message_hand_win()
             self.end()
 
-
-        dealer.show_hand(dealer_hide = True)
-
-        while player.is_active:
-            player.show_hand()
-
-            player.player_choice(deck = self.deck)
-
-            if player.is_bust:
-                print("Player busts. You lose!")
-                player.is_active = False
-                self.end()
-        
-        # dealer turn
-        dealer.is_active = True
-
-        while dealer.is_active:
-
-            while dealer.value <= 16:
-                
-                print("Dealer Hits with a hand of {str(dealer.value)}")
-                dealer.add_card(self.deck.deal())
-                dealer.show_hand()
-                time.sleep(2)
-
-                if dealer.is_bust:
-                    print("Dealer busts. You win!")
-                    dealer.is_active = False
-                    self.end()
-            
-            dealer.is_active = False
-            print(print(f"Dealer stands with hand of {str(dealer.value)}\n"))
-
-             
-#TODO add messages that say dealer (and player) hits with 14
 
 
         # deck = Deck()
