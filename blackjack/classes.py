@@ -9,10 +9,10 @@ class Card:
 
         if rank not in [
             '1', '2', '3', '4', '5', '6',
-            '7', '8', '9', '10', 'A', 'J', 'Q', 'K']:
+            '7', '8', '9', '10', 'A', 'J', 'Q', 'K', 'X']:
                 raise ValueError("Invalid rank")
 
-        valid_suits = ['D', 'S', 'C', 'H']
+        valid_suits = ['D', 'S', 'C', 'H', 'X']
         if suit not in valid_suits:
             raise ValueError(f"Invalid suit. Valid suits are {valid_suits}")
 
@@ -26,13 +26,13 @@ class Card:
         "D": "\u2666",
         "S": "\u2660"
     }    
-    def __str__(self):
+    def __repr__(self):
         string = "".join((str(self.rank), self.suit_lu[self.suit]))
         return(string)
 
-    def __repr__(self):
-        rep = "Card({}, {})".format(self.rank, self.suit)
-        return(rep)    
+    # def __repr__(self):
+    #     rep = "Card({}, {})".format(self.rank, self.suit)
+    #     return(rep)    
 
 
        
@@ -165,17 +165,11 @@ class Game:
         self.player_turn = True
 
     def check_winner(self):
-        #list(map())
-        # print("here")
-
-        # for i in self.hands:
-        #     print(i.value)
         pass
 
     def end(self):
         print("Goodbye")
         sys.exit()
-
     
     def play(self):
         # self = Game()
@@ -229,7 +223,7 @@ class Game:
 
             while dealer.value <= 16:
                 
-                print("Dealer Hits")
+                print("Dealer Hits with a hand of {str(dealer.value)}")
                 dealer.add_card(self.deck.deal())
                 dealer.show_hand()
                 time.sleep(2)
