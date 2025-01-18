@@ -3,7 +3,7 @@ import random
 import sys
 
 class Card:
-    # card classes 53w5
+    # card class
     def __init__(self, rank, suit):
 
         if rank not in [
