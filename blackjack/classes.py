@@ -26,16 +26,24 @@ class Card:
         "D": "\u2666",
         "S": "\u2660"
     }    
-    
+    def __str__(self):
+        string = "".join((str(self.rank), self.suit_lu[self.suit]))
+        return(string)
+
     def __repr__(self):
-        rep = "".join((str(self.rank), self.suit_lu[self.suit]))
-        return(rep)
+        rep = "Card({}, {})".format(self.rank, self.suit)
+        return(rep)    
+
+
        
 class Deck():
     def __init__(self):
         self.cards = []
+        self.fill_deck()
+        self.shuffle()
 
     def fill_deck(self):
+        self.clear_deck()
         suits = ["C", "D", "S", "H"]    
         ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
         self.cards = [Card(r, s) for r in ranks for s in suits]
@@ -47,11 +55,18 @@ class Deck():
         random.shuffle(self.cards)
 
     def deal(self):
-        return(self.cards.pop())
+        return(self.cards.pop(0))
 
     def __repr__(self):
-        rep = f"{str(len(self.cards))} cards remaining in the deck"
+        rep = "Hand({})".format(self.cards)
         return(rep)
+
+    def __str__(self):
+        info = f"{str(len(self.cards))} cards remaining in the deck"
+        first_card = f"next card is {str(self.cards[0])}"
+
+        return(info + '\n' + first_card)
+
 
 
 class Hand:
@@ -129,6 +144,12 @@ class Hand:
             if answer.lower() == "s":
                 print(f"Player stands with hand of {str(self.value)}\n")
                 self.is_active = False
+    
+    def __repr__(self):
+        pass
+
+        
+
     
 
 class Game:
@@ -214,11 +235,10 @@ class Game:
                     self.end()
             
             dealer.is_active = False
-            print(print(f"Dealer stands with hand of {str(dealer.value)}\n")
-)
+            print(print(f"Dealer stands with hand of {str(dealer.value)}\n"))
 
              
-
+#TODO add messages that say dealer (and player) hits with 14
 
 
         # deck = Deck()
