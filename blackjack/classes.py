@@ -161,7 +161,7 @@ class Game:
         self.hands = [player, dealer]
 
         # deal 2 cards to each player
-        for i in range(2):
+        for _ in range(2):
             for p in self.hands:
                 # p = player
                 p.add_card(self.deck.deal())
